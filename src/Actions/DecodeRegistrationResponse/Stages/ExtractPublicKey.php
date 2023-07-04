@@ -24,6 +24,7 @@ class ExtractPublicKey
         $publicKey = u2f_pub2pem($publicKeyString, Constants::U2F_PUBLIC_KEY_LENGTH);
 
         $state->setPublicKey($publicKey);
+        $state->setRawPublicKey($publicKeyString);
 
         return $state;
     }

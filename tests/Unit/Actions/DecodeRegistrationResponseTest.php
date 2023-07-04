@@ -167,11 +167,16 @@ class DecodeRegistrationResponseTest extends TestCase
         return $state;
     }
 
+    /**
+     * @depends testCreateDataToVerify
+     */
     public function testVerifySignature(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
     {
         $stage = new VerifySignature();
 
         $state = $stage->handle($state);
+
+        $this->assertEquals(1, $state->getSignatureVerification());
 
         return $state;
     }
@@ -185,12 +190,6 @@ class DecodeRegistrationResponseTest extends TestCase
 
     protected function provideRegistrationData(): array
     {
-        return [
-            'registrationData' => 'BQSl1E1Tc924vsXAXCoCWTyTz9vLCbMwGwdnSYkn3KbfJpxVltmTfkwUmcLW_mAmckCWyyJxJ8XosrngElQi3f0ZQOMb99megSY-O_Q_oyazo2vkkJFpFgadwRrvLhAF9qQbFwIPulxSP36bIbTL998HBS-qnl0ihWZi0Iodia52o1QwggIuMIIBGKADAgECAgQKYwv_MAsGCSqGSIb3DQEBCzAuMSwwKgYDVQQDEyNZdWJpY28gVTJGIFJvb3QgQ0EgU2VyaWFsIDQ1NzIwMDYzMTAgFw0xNDA4MDEwMDAwMDBaGA8yMDUwMDkwNDAwMDAwMFowKTEnMCUGA1UEAwweWXViaWNvIFUyRiBFRSBTZXJpYWwgMTc0MjYzMjk1MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEpCNkXbqLI-1s2eXki5Mqz99FZMdXMfHPUgdFEGtJupYPrQ8KpQk97jOQhEWoFrg2fN2FVxLzSeVm5jcA1CbQn6MmMCQwIgYJKwYBBAGCxAoCBBUxLjMuNi4xLjQuMS40MTQ4Mi4xLjIwCwYJKoZIhvcNAQELA4IBAQBlObAyoc_ESNIHrhSbCra0YMqmUBwTOvCaDqSBLwo-QkpcpK71PUfpcEz34sAT1w3jyhSKsUWYMiVNtlFdTZWbao7052tJUVj6p1sX2i2LwIoCY8e4llJbqKLuo0Tn10cpRo_iUNimeFEOq21ZJRqWHYs8MlBSk71uwk-SA1kCEFRAxhlcv8xBktFiRf6V3uWVM05fm7uf_hjkQyv6Wo7JVUL2VDok_rGhr2rpmn35j1mYsJ5yuty4fr6ksOADM9xzyrGELY5HUHRlKkj1EGBxPQqqdUTS2rUoQN6iQ-oXcyCYNGQn779ralXTABh88Le0LnsG0F0f9RcQHzFlUWG0MEUCICPn5mejgZZ7HAc12IsG_ZFHk2euSJs2Ic5FI5PeBijaAiEAr2zv0YnjK14njrwM5HarglOevsffedupMAzcA_z35WI',
-            'challenge' => 'RFpVZFhzdjkyZWdxOVY4NUdEZmN1ZFp6RndiQVJCMTg',
-            'version' => 'U2F_V2',
-            'appId' => 'https://server.mfa.web',
-            'clientData' => 'eyJ0eXAiOiJuYXZpZ2F0b3IuaWQuZmluaXNoRW5yb2xsbWVudCIsImNoYWxsZW5nZSI6IlJGcFZaRmh6ZGpreVpXZHhPVlk0TlVkRVptTjFaRnA2Um5kaVFWSkNNVGciLCJvcmlnaW4iOiJodHRwczovL3NlcnZlci5tZmEud2ViIiwiY2lkX3B1YmtleSI6IiJ9'
-        ];
+        return require(__DIR__ . '/../../Data/valid_registration_challenge_response_data.php');
     }
 }

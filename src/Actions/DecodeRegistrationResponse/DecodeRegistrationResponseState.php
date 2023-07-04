@@ -12,11 +12,13 @@ class DecodeRegistrationResponseState
     protected array $unpackedClientData = [];
     protected int $pkiParsingOffset = 1;
     protected string $publicKey = '';
+    protected string $rawPublicKey = '';
     protected string $keyHandle = '';
     protected string $rawCert = '';
     protected string $pemCert = '';
     protected string $extractedSignature;
     protected string $dataToVerify;
+    protected int $signatureVerification = -1;
 
     public function __construct(
         public readonly RegistrationResponse $registrationResponse
@@ -82,6 +84,16 @@ class DecodeRegistrationResponseState
         return $this->publicKey;
     }
 
+    public function setRawPublicKey(string $publicKey): void
+    {
+        $this->rawPublicKey = $publicKey;
+    }
+
+    public function getRawPublicKey(): string
+    {
+        return $this->rawPublicKey;
+    }
+
     public function setKeyHandle(string $keyHandle): void
     {
         $this->keyHandle = $keyHandle;
@@ -130,5 +142,15 @@ class DecodeRegistrationResponseState
     public function getDataToVerify(): string
     {
         return $this->dataToVerify;
+    }
+
+    public function setSignatureVerification(int $result): void
+    {
+        $this->signatureVerification = $result;
+    }
+
+    public function getSignatureVerification(): int
+    {
+        return $this->signatureVerification;
     }
 }

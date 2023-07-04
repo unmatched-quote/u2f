@@ -12,7 +12,7 @@ class CreateDataToVerify
         $data .= hash('sha256', $state->registrationResponse->appId, true);
         $data .= hash('sha256', $state->getDecodedClientData(), true);
         $data .= $state->getKeyHandle();
-        $data .= $state->getPublicKey();
+        $data .= $state->getRawPublicKey();
 
         $state->setDataToVerify($data);
 

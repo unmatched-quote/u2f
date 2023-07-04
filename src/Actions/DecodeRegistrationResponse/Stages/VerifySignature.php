@@ -19,6 +19,8 @@ class VerifySignature
             throw new InvalidSignatureException('Invalid signature. OpenSSL error: '. openssl_error_string());
         }
 
+        $state->setSignatureVerification($result);
+
         return $state;
     }
 }
