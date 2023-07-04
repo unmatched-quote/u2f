@@ -1,0 +1,30 @@
+{
+    "name": "just-some-code/u2f",
+    "description": "Universal 2nd Factor (U2F) Parser / Validator library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikola B.",
+            "email": "nikola.bursac@proton.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JustSomeCode\\U2F\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "JustSomeCode\\U2F\\Tests\\Unit\\": "tests/Unit/"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.2",
+        "ext-openssl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2"
+    }
+}
