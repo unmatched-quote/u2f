@@ -5,6 +5,7 @@ namespace JustSomeCode\U2F;
 use JustSomeCode\U2F\Protocol\Constants;
 use JustSomeCode\U2F\DTO\RegistrationResponse;
 use JustSomeCode\U2F\DTO\RegistrationChallenge;
+use JustSomeCode\U2F\DTO\AuthenticationChallenge;
 use JustSomeCode\U2F\DTO\DecodedRegistrationResponse;
 use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\DecodeRegistrationResponseAction;
 
@@ -48,8 +49,15 @@ function u2f_enroll_parse(
     return $action->execute($dto)->getResult();
 }
 
-function u2f_auth_challenge()
-{}
+function u2f_auth_challenge(string $appId, string $keyHandle): AuthenticationChallenge
+{
+    return new AuthenticationChallenge(
+        appId: $appId,
+        challenge: str_random(32),
+        keyHandle: $keyHandle,
+        version: Constants::U2F_VERSION
+    );
+}
 
 function u2f_auth_parse()
 {}
