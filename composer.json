@@ -13,7 +13,8 @@
             "JustSomeCode\\U2F\\": "src/"
         },
         "files": [
-            "src/functions.php"
+            "src/functions.php",
+            "src/u2f.php"
         ]
     },
     "autoload-dev": {
