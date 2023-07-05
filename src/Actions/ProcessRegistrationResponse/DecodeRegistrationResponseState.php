@@ -1,6 +1,6 @@
 <?php
 
-namespace JustSomeCode\U2F\Actions\DecodeRegistrationResponse;
+namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse;
 
 use JustSomeCode\U2F\DTO\RegistrationResponse;
 

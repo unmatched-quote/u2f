@@ -1,8 +1,8 @@
 <?php
 
-namespace JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages;
+namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages;
 
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
 
 class ExtractKeyHandle
 {

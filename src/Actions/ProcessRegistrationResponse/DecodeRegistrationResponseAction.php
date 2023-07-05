@@ -1,21 +1,21 @@
 <?php
 
-namespace JustSomeCode\U2F\Actions\DecodeRegistrationResponse;
+namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse;
 
 use JustSomeCode\U2F\{
     Pipeline,
     DTO\RegistrationResponse,
     DTO\DecodedRegistrationResponse,
-    Actions\DecodeRegistrationResponse\Stages\CreateDataToVerify,
-    Actions\DecodeRegistrationResponse\Stages\ExtractKeyHandle,
-    Actions\DecodeRegistrationResponse\Stages\ExtractSignature,
-    Actions\DecodeRegistrationResponse\Stages\VerifySignature,
-    Actions\DecodeRegistrationResponse\Stages\DecodeClientData,
-    Actions\DecodeRegistrationResponse\Stages\UnpackClientData,
-    Actions\DecodeRegistrationResponse\Stages\ExtractPublicKey,
-    Actions\DecodeRegistrationResponse\Stages\ExtractCertificate,
-    Actions\DecodeRegistrationResponse\Stages\DecodeRegistrationData,
-    Actions\DecodeRegistrationResponse\Stages\UnpackRegistrationData
+    Actions\ProcessRegistrationResponse\Stages\CreateDataToVerify,
+    Actions\ProcessRegistrationResponse\Stages\ExtractKeyHandle,
+    Actions\ProcessRegistrationResponse\Stages\ExtractSignature,
+    Actions\ProcessRegistrationResponse\Stages\VerifySignature,
+    Actions\ProcessRegistrationResponse\Stages\DecodeClientData,
+    Actions\ProcessRegistrationResponse\Stages\UnpackClientData,
+    Actions\ProcessRegistrationResponse\Stages\ExtractPublicKey,
+    Actions\ProcessRegistrationResponse\Stages\ExtractCertificate,
+    Actions\ProcessRegistrationResponse\Stages\DecodeRegistrationData,
+    Actions\ProcessRegistrationResponse\Stages\UnpackRegistrationData
 };
 
 class DecodeRegistrationResponseAction

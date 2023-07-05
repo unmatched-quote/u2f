@@ -42,10 +42,10 @@ class U2FFunctionsTest extends TestCase
 
         $this->assertInstanceOf(AuthenticationChallenge::class, $result);
         $this->assertIsArray($data = (array)$result);
-        $this->assertArrayHasKey('appId', $data['appId']);
-        $this->assertArrayHasKey('challenge', $data['challenge']);
-        $this->assertArrayHasKey('keyHandle', $data['keyHandle']);
-        $this->assertArrayHasKey('version', $data['version']);
+        $this->assertArrayHasKey('appId', $data);
+        $this->assertArrayHasKey('challenge', $data);
+        $this->assertArrayHasKey('keyHandle', $data);
+        $this->assertArrayHasKey('version', $data);
     }
 
     protected function provideValidAppId(): array

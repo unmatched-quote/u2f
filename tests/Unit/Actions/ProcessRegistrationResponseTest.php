@@ -4,19 +4,19 @@ namespace JustSomeCode\U2F\Tests\Unit\Actions;
 
 use PHPUnit\Framework\TestCase;
 use JustSomeCode\U2F\DTO\RegistrationResponse;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\VerifySignature;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\DecodeClientData;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\UnpackClientData;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\ExtractKeyHandle;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\ExtractPublicKey;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\ExtractSignature;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\ExtractCertificate;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\CreateDataToVerify;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\DecodeRegistrationData;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages\UnpackRegistrationData;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\VerifySignature;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\DecodeClientData;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\UnpackClientData;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\ExtractKeyHandle;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\ExtractPublicKey;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\ExtractSignature;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\ExtractCertificate;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\CreateDataToVerify;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\DecodeRegistrationData;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\UnpackRegistrationData;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
 
-class DecodeRegistrationResponseTest extends TestCase
+class ProcessRegistrationResponseTest extends TestCase
 {
     public function testDecodeRegistrationResponseCreatedOk(): DecodeRegistrationResponseState
     {

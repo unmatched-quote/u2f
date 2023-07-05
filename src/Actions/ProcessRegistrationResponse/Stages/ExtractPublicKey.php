@@ -1,9 +1,9 @@
 <?php
 
-namespace JustSomeCode\U2F\Actions\DecodeRegistrationResponse\Stages;
+namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages;
 
 use JustSomeCode\U2F\Protocol\Constants;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
 use function JustSomeCode\U2F\u2f_pub2pem;
 
 class ExtractPublicKey

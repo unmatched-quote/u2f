@@ -7,7 +7,7 @@ use JustSomeCode\U2F\DTO\RegistrationResponse;
 use JustSomeCode\U2F\DTO\RegistrationChallenge;
 use JustSomeCode\U2F\DTO\AuthenticationChallenge;
 use JustSomeCode\U2F\DTO\DecodedRegistrationResponse;
-use JustSomeCode\U2F\Actions\DecodeRegistrationResponse\DecodeRegistrationResponseAction;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseAction;
 
 /**
  * 1st step of enrollment process: challenge
