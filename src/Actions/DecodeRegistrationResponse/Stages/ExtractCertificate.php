@@ -12,6 +12,8 @@ class ExtractCertificate
     {
         $offset = $state->getPKIParsingOffset();
 
+        // Do some magic extraction, this is defined by FIDO. Note: format of packing data is a bit ambiguous,
+        // take this at face value and as-is
         $certLen = 4;
         $certLen += ($state->getUnpackedRegistration()[$offset + 2] << 8);
         $certLen += ($state->getUnpackedRegistration()[$offset + 3]);
