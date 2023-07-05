@@ -2,12 +2,16 @@
 
 namespace JustSomeCode\U2F;
 
+use JustSomeCode\U2F\KSM\U2FKey;
 use JustSomeCode\U2F\Protocol\Constants;
 use JustSomeCode\U2F\DTO\RegistrationResponse;
+use JustSomeCode\U2F\DTO\AuthenticationResult;
 use JustSomeCode\U2F\DTO\RegistrationChallenge;
 use JustSomeCode\U2F\DTO\AuthenticationChallenge;
 use JustSomeCode\U2F\DTO\DecodedRegistrationResponse;
+use JustSomeCode\U2F\DTO\AuthenticationChallengeResponse;
 use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\ProcessRegistrationResponseAction;
+use JustSomeCode\U2F\Actions\ProcessAuthenticationResponse\ProcessAuthenticationResponseAction;
 
 /**
  * 1st step of enrollment process: challenge
@@ -59,5 +63,9 @@ function u2f_auth_challenge(string $appId, string $keyHandle): AuthenticationCha
     );
 }
 
-function u2f_auth_parse()
-{}
+function u2f_auth_parse(U2FKey $key, AuthenticationChallengeResponse $response): AuthenticationResult
+{
+    $action = new ProcessAuthenticationResponseAction();
+
+    return $action->execute($key, $response)->getResult();
+}
