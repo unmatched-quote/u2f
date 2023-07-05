@@ -8,7 +8,7 @@ class Pipeline
     protected array $stages = [];
     protected array $performance = [];
 
-    public function send($state): self
+    public function send(object $state): self
     {
         $this->state = $state;
 
