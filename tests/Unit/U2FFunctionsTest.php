@@ -3,8 +3,14 @@
 namespace JustSomeCode\U2F\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use JustSomeCode\U2F\KSM\U2FKey;
+use JustSomeCode\U2F\DTO\AuthenticationResult;
 use JustSomeCode\U2F\DTO\AuthenticationChallenge;
 use JustSomeCode\U2F\DTO\DecodedRegistrationResponse;
+use JustSomeCode\U2F\DTO\AuthenticationChallengeResponse;
+use function JustSomeCode\U2F\u2f_pub2pem;
+use function JustSomeCode\U2F\u2f_str_decode;
+use function JustSomeCode\U2F\u2f_auth_parse;
 use function JustSomeCode\U2F\u2f_enroll_parse;
 use function JustSomeCode\U2F\u2f_auth_challenge;
 use function JustSomeCode\U2F\u2f_enroll_challenge;
@@ -48,6 +54,18 @@ class U2FFunctionsTest extends TestCase
         $this->assertArrayHasKey('version', $data);
     }
 
+    public function test_u2f_auth_parse_function(): void
+    {
+        $key = $this->provideU2FKeyDTO();
+        $response = $this->provideAuthenticationResponseDTO();
+
+        $result = u2f_auth_parse($key, $response);
+
+        $this->assertInstanceOf(AuthenticationResult::class, $result);
+        $this->assertIsInt($result->counter);
+        $this->assertEquals(27, $result->counter);
+    }
+
     protected function provideValidAppId(): array
     {
         return [
@@ -68,5 +86,33 @@ class U2FFunctionsTest extends TestCase
         if(isset($data['version'])) unset($data['version']);
 
         return $data;
+    }
+
+    protected function provideU2FKeyDTO(): U2FKey
+    {
+        return new U2FKey(...$this->provideU2FKeyData());
+    }
+
+    protected function provideU2FKeyData(): array
+    {
+        $key = require(__DIR__ . '/../Data/valid_key_storage_module_data.php');
+
+        // Convert key
+        $key['publicKey'] = u2f_pub2pem(u2f_str_decode($key['publicKey']));
+
+        return $key;
+    }
+
+    protected function provideAuthenticationResponseDTO(): AuthenticationChallengeResponse
+    {
+        return new AuthenticationChallengeResponse(...$this->provideAuthenticationResponseData());
+    }
+
+    protected function provideAuthenticationResponseData(): array
+    {
+        // responseData
+        $data = require(__DIR__ . '/../Data/valid_authentication_signing_response.php');
+
+        return $data['responseData'];
     }
 }
