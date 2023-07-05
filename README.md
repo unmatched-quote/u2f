@@ -63,3 +63,23 @@ $response = u2f_enroll_parse($appId, $challenge, $registrationData, $clientData,
 
 echo json_encode((array)$response);
 ```
+
+
+### Authentication (signing)
+
+#### Generate a challenge
+
+To generate a challenge, it's expected that you load U2F key information from KSM (key storage module - database).
+
+Frontend process is user entering username, sending data to server. Server reads user info from db, loads associated keys
+and for each key associated with the user it then generates the auth (signing) challenge.
+
+This function deals with the challenge issuing *for* a key identified by `keyHandle` parameter.
+
+```php
+use function JustSomeCode\u2f_auth_challenge;
+
+// Load data from db, using $_POST['username']
+// Obtain keyHandle and appId values
+
+$challenge = u2f_auth_challenge
