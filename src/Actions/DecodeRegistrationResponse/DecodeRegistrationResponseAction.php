@@ -3,13 +3,13 @@
 namespace JustSomeCode\U2F\Actions\DecodeRegistrationResponse;
 
 use JustSomeCode\U2F\{
+    Pipeline,
+    DTO\RegistrationResponse,
+    DTO\DecodedRegistrationResponse,
     Actions\DecodeRegistrationResponse\Stages\CreateDataToVerify,
     Actions\DecodeRegistrationResponse\Stages\ExtractKeyHandle,
     Actions\DecodeRegistrationResponse\Stages\ExtractSignature,
     Actions\DecodeRegistrationResponse\Stages\VerifySignature,
-    DTO\DecodedRegistrationResponse,
-    Pipeline,
-    DTO\RegistrationResponse,
     Actions\DecodeRegistrationResponse\Stages\DecodeClientData,
     Actions\DecodeRegistrationResponse\Stages\UnpackClientData,
     Actions\DecodeRegistrationResponse\Stages\ExtractPublicKey,
@@ -17,8 +17,6 @@ use JustSomeCode\U2F\{
     Actions\DecodeRegistrationResponse\Stages\DecodeRegistrationData,
     Actions\DecodeRegistrationResponse\Stages\UnpackRegistrationData
 };
-
-use function JustSomeCode\U2F\u2f_str_encode;
 
 class DecodeRegistrationResponseAction
 {
@@ -58,9 +56,9 @@ class DecodeRegistrationResponseAction
             ->then(function(DecodeRegistrationResponseState $state)
             {
                 return new DecodedRegistrationResponse(
-                    base64_encode($state->getPublicKey()),
-                    u2f_str_encode($state->getKeyHandle()),
-                    base64_encode($state->getRawCert()),
+                    $state->getPublicKey(),
+                    $state->getKeyHandle(),
+                    $state->getRawCert(),
                     $state->registrationResponse->appId
                 );
             });
@@ -70,7 +68,7 @@ class DecodeRegistrationResponseAction
 
     public function getResult(): DecodedRegistrationResponse
     {
-        if(!$this->result instanceof DecodedRegistrationResponse)
+        if(empty($this->result))
         {
             throw new \BadMethodCallException('Method getResult() called before execute(). Result is unavailable, run execute() method first.');
         }
