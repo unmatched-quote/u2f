@@ -18,13 +18,13 @@ use JustSomeCode\U2F\{
     Actions\ProcessRegistrationResponse\Stages\UnpackRegistrationData
 };
 
-class DecodeRegistrationResponseAction
+class ProcessRegistrationResponseAction
 {
     protected DecodedRegistrationResponse $result;
 
     public function execute(RegistrationResponse $response): self
     {
-        $state = new DecodeRegistrationResponseState($response);
+        $state = new ProcessRegistrationResponseState($response);
 
         $pipeline = new Pipeline;
 
@@ -53,7 +53,7 @@ class DecodeRegistrationResponseAction
                 // Verify signature
                 VerifySignature::class,
             ])
-            ->then(function(DecodeRegistrationResponseState $state)
+            ->then(function(ProcessRegistrationResponseState $state)
             {
                 return new DecodedRegistrationResponse(
                     $state->getPublicKey(),

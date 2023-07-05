@@ -3,12 +3,12 @@
 namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages;
 
 use JustSomeCode\U2F\Protocol\Constants;
-use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\ProcessRegistrationResponseState;
 use function JustSomeCode\U2F\u2f_pub2pem;
 
 class ExtractPublicKey
 {
-    public function handle(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function handle(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $publicKeyString = substr(
             $state->getDecodedRegistrationData(),

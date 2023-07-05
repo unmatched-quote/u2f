@@ -4,7 +4,7 @@ namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse;
 
 use JustSomeCode\U2F\DTO\RegistrationResponse;
 
-class DecodeRegistrationResponseState
+class ProcessRegistrationResponseState
 {
     protected string $decodedRegistrationData = '';
     protected array $unpackedRegistration = [];

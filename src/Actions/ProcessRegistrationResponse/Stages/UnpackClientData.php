@@ -2,11 +2,11 @@
 
 namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages;
 
-use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\ProcessRegistrationResponseState;
 
 class UnpackClientData
 {
-    public function handle(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function handle(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         // throw \JsonException if invalid string provided
         $decoded = json_decode($state->getDecodedClientData(), true, 512, JSON_THROW_ON_ERROR);

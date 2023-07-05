@@ -7,7 +7,7 @@ use JustSomeCode\U2F\DTO\RegistrationResponse;
 use JustSomeCode\U2F\DTO\RegistrationChallenge;
 use JustSomeCode\U2F\DTO\AuthenticationChallenge;
 use JustSomeCode\U2F\DTO\DecodedRegistrationResponse;
-use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseAction;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\ProcessRegistrationResponseAction;
 
 /**
  * 1st step of enrollment process: challenge
@@ -44,7 +44,7 @@ function u2f_enroll_parse(
         clientData: $clientData
     );
 
-    $action = new DecodeRegistrationResponseAction();
+    $action = new ProcessRegistrationResponseAction();
 
     return $action->execute($dto)->getResult();
 }

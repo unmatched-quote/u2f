@@ -14,13 +14,13 @@ use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\ExtractCertifica
 use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\CreateDataToVerify;
 use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\DecodeRegistrationData;
 use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages\UnpackRegistrationData;
-use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\ProcessRegistrationResponseState;
 
 class ProcessRegistrationResponseTest extends TestCase
 {
-    public function testDecodeRegistrationResponseCreatedOk(): DecodeRegistrationResponseState
+    public function testDecodeRegistrationResponseCreatedOk(): ProcessRegistrationResponseState
     {
-        $state = new DecodeRegistrationResponseState(
+        $state = new ProcessRegistrationResponseState(
             $this->provideRegistrationResponseDTO()
         );
 
@@ -32,7 +32,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testDecodeRegistrationResponseCreatedOk
      */
-    public function testDecodeRegistrationDataStage(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testDecodeRegistrationDataStage(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new DecodeRegistrationData();
 
@@ -47,7 +47,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testDecodeRegistrationDataStage
      */
-    public function testUnpackRegistrationData(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testUnpackRegistrationData(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new UnpackRegistrationData();
 
@@ -62,7 +62,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testUnpackRegistrationData
      */
-    public function testDecodeClientData(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testDecodeClientData(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new DecodeClientData();
 
@@ -77,7 +77,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testDecodeClientData
      */
-    public function testUnpackClientData(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testUnpackClientData(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new UnpackClientData();
 
@@ -95,7 +95,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testUnpackClientData
      */
-    public function testExtractPublicKey(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testExtractPublicKey(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new ExtractPublicKey();
 
@@ -109,7 +109,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testExtractPublicKey
      */
-    public function testExtractKeyHandle(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testExtractKeyHandle(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new ExtractKeyHandle();
 
@@ -124,7 +124,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testExtractKeyHandle
      */
-    public function testExtractCertificate(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testExtractCertificate(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new ExtractCertificate();
 
@@ -140,7 +140,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testExtractCertificate
      */
-    public function testExtractSignature(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testExtractSignature(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new ExtractSignature();
 
@@ -155,7 +155,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testExtractSignature
      */
-    public function testCreateDataToVerify(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testCreateDataToVerify(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new CreateDataToVerify();
 
@@ -170,7 +170,7 @@ class ProcessRegistrationResponseTest extends TestCase
     /**
      * @depends testCreateDataToVerify
      */
-    public function testVerifySignature(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function testVerifySignature(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $stage = new VerifySignature();
 

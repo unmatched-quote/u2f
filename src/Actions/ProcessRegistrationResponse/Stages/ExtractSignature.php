@@ -2,11 +2,11 @@
 
 namespace JustSomeCode\U2F\Actions\ProcessRegistrationResponse\Stages;
 
-use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\DecodeRegistrationResponseState;
+use JustSomeCode\U2F\Actions\ProcessRegistrationResponse\ProcessRegistrationResponseState;
 
 class ExtractSignature
 {
-    public function handle(DecodeRegistrationResponseState $state): DecodeRegistrationResponseState
+    public function handle(ProcessRegistrationResponseState $state): ProcessRegistrationResponseState
     {
         $signature = substr($state->getDecodedRegistrationData(), $state->getPKIParsingOffset());
 
